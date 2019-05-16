@@ -1,1 +1,77 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: #1d2632;
+  color: #fff;
+}
+
+.waveContainer {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 100%;
+  width: 100%;
+  overflow-x: none;
+  overflow-y: auto;
+  background-image: url("/assets/img/wave.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+}
+
+.logo {
+  text-align: center;
+  display: block;
+  line-height: 100px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+
+  &:after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    bottom: 30px;
+    left: 100px;
+  }
+}
+
+h1 {
+  font-weight: 300;
+  font-style: normal;
+  display: block;
+  padding: 0;
+  margin: 5px 0 30px 0;
+  position: relative;
+  font-size: 1.3em;
+
+  &:after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    bottom: -10px;
+  }
+}
+
+ul li {
+  list-style: none;
+}
+
+ul {
+  margin: 0 0 20px 0;
+}
+
+a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+}

@@ -1,0 +1,69 @@
+@import '~@angular/material/theming';
+
+$md-primary: (50 : #edf1fe,
+  100 : #d2dcfc,
+  200 : #b4c5fa,
+  300 : #96adf8,
+  400 : #809cf7,
+  500 : #698af5,
+  600 : #6182f4,
+  700 : #5677f2,
+  800 : #4c6df0,
+  900 : #3b5aee,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #d3daff,
+  A700 : #b9c5ff,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #000000,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  ));
+
+
+@include mat-core();
+$wa-manager-primary: mat-palette($md-primary);
+$wa-manager-accent: mat-palette($mat-pink, A200, A100, A400);
+$wa-manager-warn: mat-palette($mat-red);
+$wa-manager-theme: mat-dark-theme($wa-manager-primary, $wa-manager-accent, $wa-manager-warn);
+@include angular-material-theme($wa-manager-theme);
+
+$card-background : #232D3B;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 300;
+}
+
+.mat-card {
+  background: $card-background;
+  border-radius: 3px;
+}
+
+.mat-drawer-container {
+  background: transparent;
+}
+
+.mat-drawer {
+  width: 300px;
+}
+
+.mat-drawer.mat-drawer-push {
+  background: rgba(#1D2632, 1);
+}

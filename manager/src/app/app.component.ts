@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { AuthService } from "./services/auth.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  template: `
+    <div class="waveContainer">
+      <router-outlet></router-outlet>
+    </div>
+  `,
+  styles: [""],
+  providers: []
 })
 export class AppComponent {
-  title = 'manager';
+  title = "wa-manager";
+
+  constructor(public authService: AuthService) {}
+
+  doLogin() {}
 }
