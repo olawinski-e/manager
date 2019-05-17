@@ -112,18 +112,18 @@
                       <mat-label>Libellé</mat-label>
                       <input
                         type="text"
+                        aria-label="Number"
                         matInput
                         formControlName="libelle"
                         placeholder="PHP, Java..."
-                        [formControl]="myControl"
                         [matAutocomplete]="auto"
                       />
                       <mat-autocomplete #auto="matAutocomplete">
                         <mat-option
-                          *ngFor="let option of filteredOptions | async"
+                          *ngFor="let option of filteredOption | async"
                           [value]="option"
                         >
-                          {{ options }}
+                          {{ option }}
                         </mat-option>
                       </mat-autocomplete>
                     </mat-form-field>

@@ -28,7 +28,33 @@ export class PointsEvaluationComponent implements OnInit, OnDestroy {
   technologieForm: FormGroup;
   myControl = new FormControl();
   displayedColumns: string[] = ["libelle", "version", "description", "actions"];
-  options: string[] = ["One", "Two", "Three"];
+  options: string[] = [
+    "PHP",
+    "JavaScript",
+    "Java",
+    "HTML",
+    "CSS",
+    "Canvas",
+    "NodeJS",
+    "Angular",
+    "VueJS",
+    "React",
+    "Bootstrap",
+    "Angular Material",
+    "Bulma",
+    "AJAX",
+    "RubyOnRails",
+    ".NET",
+    "C/C++",
+    "MySQL",
+    "Drupal CMS",
+    "Wordpress",
+    "Python",
+    "GIT",
+    "Express",
+    "Django",
+    "Laravel"
+  ];
   dataSource = new MatTableDataSource(this.technologiesService.technologies);
   filteredOption: Observable<string[]>;
 
@@ -50,7 +76,7 @@ export class PointsEvaluationComponent implements OnInit, OnDestroy {
       }
     );
     this.dataSource.sort = this.sort;
-    this.filteredOption = this.myControl.valueChanges.pipe(
+    this.filteredOption = this.technologieForm.controls.libelle.valueChanges.pipe(
       startWith(""),
       map(value => this._filter(value))
     );
@@ -70,10 +96,10 @@ export class PointsEvaluationComponent implements OnInit, OnDestroy {
   }
 
   private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+    const filterValue = value ? value.toLowerCase() : "";
 
-    return this.options.filter(options =>
-      options.toLowerCase().includes(filterValue)
+    return this.options.filter(option =>
+      option.toLowerCase().includes(filterValue)
     );
   }
 
