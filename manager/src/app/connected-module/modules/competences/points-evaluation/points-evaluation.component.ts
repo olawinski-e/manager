@@ -1,8 +1,16 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl
+} from "@angular/forms";
 import { TechnologiesService } from "src/app/services/technologies.service";
 import { Technologies } from "src/app/models/technologies";
-import { Subscription } from "rxjs";
+import { Subscription, Observable } from "rxjs";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
+import { map, startWith } from "rxjs/operators";
 
 export interface Technologies {
   libelle: string;
@@ -16,10 +24,15 @@ export interface Technologies {
   styleUrls: ["./points-evaluation.component.scss"]
 })
 export class PointsEvaluationComponent implements OnInit, OnDestroy {
-  technologies: Technologies[];
   technologiesSubscription: Subscription;
   technologieForm: FormGroup;
+  myControl = new FormControl();
   displayedColumns: string[] = ["libelle", "version", "description", "actions"];
+  options: string[] = ["One", "Two", "Three"];
+  dataSource = new MatTableDataSource(this.technologiesService.technologies);
+  filteredOption: Observable<string[]>;
+
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     public technologiesService: TechnologiesService,
@@ -27,12 +40,19 @@ export class PointsEvaluationComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    console.log(this.dataSource);
     this.initForm();
     this.technologiesSubscription = this.technologiesService.technologiesSubject.subscribe(
       (technologies: Technologies[]) => {
-        this.technologies = technologies;
+        this.dataSource = new MatTableDataSource(technologies);
         console.log(technologies);
+        this.dataSource.sort = this.sort;
       }
+    );
+    this.dataSource.sort = this.sort;
+    this.filteredOption = this.myControl.valueChanges.pipe(
+      startWith(""),
+      map(value => this._filter(value))
     );
   }
 
@@ -43,6 +63,18 @@ export class PointsEvaluationComponent implements OnInit, OnDestroy {
       version: ["", Validators.required],
       description: ""
     });
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.sort = this.sort;
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(options =>
+      options.toLowerCase().includes(filterValue)
+    );
   }
 
   onDeleteTechnologie(technologies: Technologies) {
@@ -58,12 +90,12 @@ export class PointsEvaluationComponent implements OnInit, OnDestroy {
   onSaveTechnologie() {
     console.log("onSavetechnologie ok");
     console.log(this.technologieForm);
-    const libelle = this.technologieForm.get("libelle").value;
+    const libelle = this.technologieForm.get("libelle").value.toLowerCase();
     const version = this.technologieForm.get("version").value;
     const description = this.technologieForm.get("description").value;
     const newTechnologie = new Technologies(libelle, version);
     newTechnologie.description = description;
-
     this.technologiesService.createNewTechnologie(newTechnologie);
+    this.technologieForm.reset();
   }
 }

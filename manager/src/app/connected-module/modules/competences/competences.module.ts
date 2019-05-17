@@ -8,6 +8,10 @@ import { MatInputModule } from "@angular/material/input";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTableModule } from "@angular/material/table";
+import { MatButtonModule } from "@angular/material/button";
+import { MatSortModule } from "@angular/material/sort";
+import { MatIconModule } from "@angular/material/icon";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [CompetencesComponent, PointsEvaluationComponent],
@@ -19,7 +23,11 @@ import { MatTableModule } from "@angular/material/table";
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule,
+    MatSortModule,
+    MatIconModule,
+    MatAutocompleteModule
   ],
   bootstrap: [CompetencesComponent]
 })

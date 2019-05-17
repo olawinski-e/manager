@@ -55,8 +55,8 @@ import { DesignService } from "../services/design.service";
           </ul>
         </nav>
       </mat-drawer>
-      <mat-drawer-content>
-        <div style="padding:30px;">
+      <mat-drawer-content class="margin-right-zero">
+        <div style="padding:30px">
           <router-outlet></router-outlet>
         </div>
       </mat-drawer-content>

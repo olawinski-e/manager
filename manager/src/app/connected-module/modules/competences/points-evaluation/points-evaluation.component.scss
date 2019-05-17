@@ -16,7 +16,6 @@ a:focus {
 
 .example-form {
   min-width: 150px;
-  max-width: 500px;
   width: 100%;
 }
 
@@ -26,4 +25,18 @@ a:focus {
 
 table {
   width: 100%;
+}
+
+.sticky-header {
+  height: 400px;
+  overflow: auto;
+}
+
+.mat-table {
+  background: none !important;
+}
+
+.td-20,
+.th-20 {
+  width: 20%;
 }

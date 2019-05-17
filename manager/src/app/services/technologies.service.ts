@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { Technologies } from "src/app/models/technologies";
+
 import * as firebase from "firebase";
 import DataSnapshot = firebase.database.DataSnapshot;
 
@@ -20,7 +21,6 @@ export class TechnologiesService {
   }
 
   saveTechnologies() {
-    console.log(this.technologies);
     firebase
       .database()
       .ref("/technologies")
@@ -56,6 +56,4 @@ export class TechnologiesService {
     this.saveTechnologies();
     this.emitTechnologies();
   }
-
-  ngOnInit() {}
 }
